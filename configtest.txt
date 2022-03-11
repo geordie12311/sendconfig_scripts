@@ -1,0 +1,4 @@
+snmp-server community is gh-lab
+logging host 99.99.99.99
+int lo1
+description THIS IS A TEST INTERFACE USING NORNIR SCRIPT
