@@ -1,0 +1,374 @@
+2022-03-20 10:29:42,642 -  nornir.core -     INFO -        run() - Running task 'push_scp' with args {} on 1 hosts
+2022-03-20 10:30:10,051 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.10/site-packages/napalm/ios/ios.py", line 555, in commit_config
+    raise MergeConfigException(merge_error)
+napalm.base.exceptions.MergeConfigException: Configuration merge failed; automatic rollback attempted:
+naplam-config.txt
+  ^
+% Invalid input detected at '^' marker.
+
+17 bytes copied in 0.019 secs (895 bytes/sec)
+
+
+2022-03-20 10:30:10,051 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'push_scp' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/napalm_config.py", line 11, in push_scp
+    task.run(task=napalm_configure, configuration="naplam-config.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-20 10:32:40,938 -  nornir.core -     INFO -        run() - Running task 'push_scp' with args {} on 1 hosts
+2022-03-20 10:33:12,635 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.10/site-packages/napalm/ios/ios.py", line 555, in commit_config
+    raise MergeConfigException(merge_error)
+napalm.base.exceptions.MergeConfigException: Configuration merge failed; automatic rollback attempted:
+
+banner.txt
+      ^
+% Invalid input detected at '^' marker.
+
+10 bytes copied in 0.018 secs (556 bytes/sec)
+
+
+2022-03-20 10:33:12,636 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'push_scp' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/napalm_config.py", line 11, in push_scp
+    task.run(task=napalm_configure, configuration="banner.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-20 10:33:51,857 -  nornir.core -     INFO -        run() - Running task 'push_scp' with args {} on 1 hosts
+2022-03-20 10:33:54,563 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/netmiko/base_connection.py", line 935, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/usr/lib/python3/dist-packages/paramiko/client.py", line 435, in connect
+    self._auth(
+  File "/usr/lib/python3/dist-packages/paramiko/client.py", line 764, in _auth
+    raise saved_exception
+  File "/usr/lib/python3/dist-packages/paramiko/client.py", line 751, in _auth
+    self._transport.auth_password(username, password)
+  File "/usr/lib/python3/dist-packages/paramiko/transport.py", line 1509, in auth_password
+    return self.auth_handler.wait_for_response(my_event)
+  File "/usr/lib/python3/dist-packages/paramiko/auth_handler.py", line 250, in wait_for_response
+    raise e
+paramiko.ssh_exception.AuthenticationException: Authentication failed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 29, in napalm_configure
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir_napalm/plugins/connections/__init__.py", line 57, in open
+    connection.open()
+  File "/home/geordie/.local/lib/python3.10/site-packages/napalm/ios/ios.py", line 169, in open
+    self.device = self._netmiko_open(
+  File "/home/geordie/.local/lib/python3.10/site-packages/napalm/base/base.py", line 86, in _netmiko_open
+    self._netmiko_device = ConnectHandler(
+  File "/home/geordie/.local/lib/python3.10/site-packages/netmiko/ssh_dispatcher.py", line 326, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.10/site-packages/netmiko/cisco/cisco_ios.py", line 17, in __init__
+    return super().__init__(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.10/site-packages/netmiko/base_connection.py", line 350, in __init__
+    self._open()
+  File "/home/geordie/.local/lib/python3.10/site-packages/netmiko/base_connection.py", line 355, in _open
+    self.establish_connection()
+  File "/home/geordie/.local/lib/python3.10/site-packages/netmiko/base_connection.py", line 972, in establish_connection
+    raise NetmikoAuthenticationException(msg)
+netmiko.ssh_exception.NetmikoAuthenticationException: Authentication to device failed.
+
+Common causes of this problem are:
+1. Invalid username and password
+2. Incorrect SSH-key file
+3. Connecting to the wrong device
+
+Device settings: cisco_ios 10.10.10.101:22
+
+
+Authentication failed.
+
+2022-03-20 10:33:54,563 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'push_scp' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/napalm_config.py", line 11, in push_scp
+    task.run(task=napalm_configure, configuration="banner motd % THIS IS A TEST BANNER FOR SELBY DEVCIES ONLY, UNAUTHORISED USERS WILL BE SHOT!!! %")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-20 10:34:08,074 -  nornir.core -     INFO -        run() - Running task 'push_scp' with args {} on 1 hosts
+2022-03-20 10:34:35,254 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.10/site-packages/napalm/ios/ios.py", line 561, in commit_config
+    output += self.device.save_config()
+  File "/home/geordie/.local/lib/python3.10/site-packages/netmiko/cisco/cisco_ios.py", line 36, in save_config
+    return super().save_config(
+  File "/home/geordie/.local/lib/python3.10/site-packages/netmiko/cisco_base_connection.py", line 246, in save_config
+    output = self.send_command(
+  File "/home/geordie/.local/lib/python3.10/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.10/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: R1\#
+
+2022-03-20 10:34:35,254 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'push_scp' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/napalm_config.py", line 11, in push_scp
+    task.run(task=napalm_configure, configuration="banner motd % THIS IS A TEST BANNER FOR SELBY DEVCIES ONLY, UNAUTHORISED USERS WILL BE SHOT!!! %")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-20 10:36:48,722 -  nornir.core -     INFO -        run() - Running task 'push_scp' with args {} on 1 hosts
+2022-03-20 10:43:38,002 -  nornir.core -     INFO -        run() - Running task 'send_configs' with args {} on 1 hosts
+2022-03-20 10:45:17,012 -  nornir.core -     INFO -        run() - Running task 'send_configs' with args {} on 10 hosts
+2022-03-20 10:45:53,005 - nornir.core.task -    ERROR -      start() - Host 'R4': task 'send_configs_from_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir_scrapli/tasks/core/send_configs_from_file.py", line 68, in send_configs_from_file
+    scrapli_response = scrapli_conn.send_configs_from_file(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/network/sync_driver.py", line 627, in send_configs_from_file
+    return self.send_configs(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/network/sync_driver.py", line 513, in send_configs
+    responses = super().send_commands(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/generic/sync_driver.py", line 215, in send_commands
+    response = self._send_command(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 413, in decorate
+    result = wrapped_func(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/generic/sync_driver.py", line 138, in _send_command
+    raw_response, processed_response = self.channel.send_input(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 280, in decorate
+    return self._multiprocessing_timeout(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 340, in _multiprocessing_timeout
+    self._handle_timeout()
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 316, in _handle_timeout
+    raise ScrapliTimeout(self.message)
+scrapli.exceptions.ScrapliTimeout: timed out sending input to device
+
+2022-03-20 10:45:53,005 - nornir.core.task -    ERROR -      start() - Host 'R4': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="config_test.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:49:19,522 -  nornir.core -     INFO -        run() - Running task 'send_configs' with args {} on 10 hosts
+2022-03-20 10:49:50,615 - nornir.core.task -    ERROR -      start() - Host 'R2': task 'send_configs_from_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir_scrapli/tasks/core/send_configs_from_file.py", line 68, in send_configs_from_file
+    scrapli_response = scrapli_conn.send_configs_from_file(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/network/sync_driver.py", line 627, in send_configs_from_file
+    return self.send_configs(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/network/sync_driver.py", line 513, in send_configs
+    responses = super().send_commands(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/generic/sync_driver.py", line 215, in send_commands
+    response = self._send_command(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 413, in decorate
+    result = wrapped_func(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/generic/sync_driver.py", line 138, in _send_command
+    raw_response, processed_response = self.channel.send_input(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 280, in decorate
+    return self._multiprocessing_timeout(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 340, in _multiprocessing_timeout
+    self._handle_timeout()
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 316, in _handle_timeout
+    raise ScrapliTimeout(self.message)
+scrapli.exceptions.ScrapliTimeout: timed out sending input to device
+
+2022-03-20 10:49:50,616 - nornir.core.task -    ERROR -      start() - Host 'R2': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="config_test.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:49:51,195 - nornir.core.task -    ERROR -      start() - Host 'R4': task 'send_configs_from_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir_scrapli/tasks/core/send_configs_from_file.py", line 68, in send_configs_from_file
+    scrapli_response = scrapli_conn.send_configs_from_file(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/network/sync_driver.py", line 627, in send_configs_from_file
+    return self.send_configs(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/network/sync_driver.py", line 513, in send_configs
+    responses = super().send_commands(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/generic/sync_driver.py", line 215, in send_commands
+    response = self._send_command(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 413, in decorate
+    result = wrapped_func(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/driver/generic/sync_driver.py", line 138, in _send_command
+    raw_response, processed_response = self.channel.send_input(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 280, in decorate
+    return self._multiprocessing_timeout(
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 340, in _multiprocessing_timeout
+    self._handle_timeout()
+  File "/home/geordie/.local/lib/python3.10/site-packages/scrapli/decorators.py", line 316, in _handle_timeout
+    raise ScrapliTimeout(self.message)
+scrapli.exceptions.ScrapliTimeout: timed out sending input to device
+
+2022-03-20 10:49:51,195 - nornir.core.task -    ERROR -      start() - Host 'R4': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="config_test.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:54:59,789 -  nornir.core -     INFO -        run() - Running task 'send_configs' with args {} on 10 hosts
+2022-03-20 10:55:00,510 - nornir.core.task -    ERROR -      start() - Host 'CSR2': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="del_flash.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:55:00,704 - nornir.core.task -    ERROR -      start() - Host 'CSR1': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="del_flash.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:55:00,790 - nornir.core.task -    ERROR -      start() - Host 'R3': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="del_flash.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:55:00,887 - nornir.core.task -    ERROR -      start() - Host 'R4': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="del_flash.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:55:00,890 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="del_flash.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:55:00,986 - nornir.core.task -    ERROR -      start() - Host 'R7': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="del_flash.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:55:00,999 - nornir.core.task -    ERROR -      start() - Host 'R8': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="del_flash.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:55:01,006 - nornir.core.task -    ERROR -      start() - Host 'R6': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="del_flash.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:55:01,045 - nornir.core.task -    ERROR -      start() - Host 'R2': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="del_flash.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
+2022-03-20 10:55:01,266 - nornir.core.task -    ERROR -      start() - Host 'R5': task 'send_configs' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/Nornir-automation/sendconfig_scripts/nornir-sendconfigfromfile.py", line 12, in send_configs
+    task.run(task=send_configs_from_file, file="del_flash.txt")
+  File "/home/geordie/.local/lib/python3.10/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
+
+
