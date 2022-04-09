@@ -372,3 +372,726 @@ Traceback (most recent call last):
 nornir.core.exceptions.NornirSubTaskError: Subtask: send_configs_from_file (failed)
 
 
+2022-03-22 06:50:49,139 -  nornir.core -     INFO -        run() - Running task 'load_vars' with args {} on 1 hosts
+2022-03-22 06:50:49,141 -  nornir.core -     INFO -        run() - Running task 'replace_config' with args {} on 1 hosts
+2022-03-22 06:51:16,055 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:51:16,055 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 21, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:52:23,161 -  nornir.core -     INFO -        run() - Running task 'load_vars' with args {} on 10 hosts
+2022-03-22 06:52:23,174 -  nornir.core -     INFO -        run() - Running task 'replace_config' with args {} on 10 hosts
+2022-03-22 06:52:23,260 - nornir.core.task -    ERROR -      start() - Host 'CSR2': task 'template_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_jinja2/plugins/tasks/template_file.py", line 42, in template_file
+    t = env.get_template(template)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 997, in get_template
+    return self._load_template(name, globals)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 958, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 125, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 214, in get_source
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: CSR2.j2
+
+2022-03-22 06:52:23,262 - nornir.core.task -    ERROR -      start() - Host 'CSR2': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 16, in replace_config
+    template_results = task.run(
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: template_file (failed)
+
+
+2022-03-22 06:52:23,263 - nornir.core.task -    ERROR -      start() - Host 'R7': task 'template_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_jinja2/plugins/tasks/template_file.py", line 42, in template_file
+    t = env.get_template(template)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 997, in get_template
+    return self._load_template(name, globals)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 958, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 137, in load
+    code = environment.compile(source, name, filename)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 757, in compile
+    self.handle_exception(source=source_hint)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "./templates/R7.j2", line 163, in template
+    {% endfor %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endfor'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+
+2022-03-22 06:52:23,264 - nornir.core.task -    ERROR -      start() - Host 'R7': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 16, in replace_config
+    template_results = task.run(
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: template_file (failed)
+
+
+2022-03-22 06:52:28,264 - nornir.core.task -    ERROR -      start() - Host 'CSR1': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 935, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/home/geordie/.local/lib/python3.8/site-packages/paramiko/util.py", line 279, in retry_on_signal
+    return function()
+  File "/home/geordie/.local/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/base/base.py", line 86, in _netmiko_open
+    self._netmiko_device = ConnectHandler(
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 326, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/cisco/cisco_ios.py", line 17, in __init__
+    return super().__init__(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 350, in __init__
+    self._open()
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 355, in _open
+    self.establish_connection()
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 957, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: cisco_ios 10.10.10.112:22
+
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 29, in napalm_configure
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/connections/__init__.py", line 57, in open
+    connection.open()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 169, in open
+    self.device = self._netmiko_open(
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/base/base.py", line 95, in _netmiko_open
+    raise ConnectionException("Cannot connect to {}".format(self.hostname))
+napalm.base.exceptions.ConnectionException: Cannot connect to 10.10.10.112
+
+2022-03-22 06:52:28,265 - nornir.core.task -    ERROR -      start() - Host 'CSR1': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 21, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:52:45,596 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:52:45,596 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 21, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:52:48,610 - nornir.core.task -    ERROR -      start() - Host 'R2': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:52:48,611 - nornir.core.task -    ERROR -      start() - Host 'R2': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 21, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:52:49,074 - nornir.core.task -    ERROR -      start() - Host 'R8': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:52:49,074 - nornir.core.task -    ERROR -      start() - Host 'R8': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 21, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:52:51,002 - nornir.core.task -    ERROR -      start() - Host 'R5': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:52:51,002 - nornir.core.task -    ERROR -      start() - Host 'R5': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 21, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:52:51,419 - nornir.core.task -    ERROR -      start() - Host 'R6': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:52:51,420 - nornir.core.task -    ERROR -      start() - Host 'R6': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 21, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:52:51,539 - nornir.core.task -    ERROR -      start() - Host 'R3': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:52:51,540 - nornir.core.task -    ERROR -      start() - Host 'R3': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 21, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:52:58,013 - nornir.core.task -    ERROR -      start() - Host 'R4': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:52:58,014 - nornir.core.task -    ERROR -      start() - Host 'R4': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 21, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:54:43,115 -  nornir.core -     INFO -        run() - Running task 'load_vars' with args {} on 10 hosts
+2022-03-22 06:54:43,129 -  nornir.core -     INFO -        run() - Running task 'replace_config' with args {} on 10 hosts
+2022-03-22 06:54:43,237 - nornir.core.task -    ERROR -      start() - Host 'R7': task 'template_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_jinja2/plugins/tasks/template_file.py", line 42, in template_file
+    t = env.get_template(template)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 997, in get_template
+    return self._load_template(name, globals)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 958, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 137, in load
+    code = environment.compile(source, name, filename)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 757, in compile
+    self.handle_exception(source=source_hint)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "./templates/R7.j2", line 163, in template
+    {% endfor %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endfor'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+
+2022-03-22 06:54:43,238 - nornir.core.task -    ERROR -      start() - Host 'R7': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 19, in replace_config
+    template_results = task.run(
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: template_file (failed)
+
+
+2022-03-22 06:54:43,238 - nornir.core.task -    ERROR -      start() - Host 'CSR2': task 'template_file' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_jinja2/plugins/tasks/template_file.py", line 42, in template_file
+    t = env.get_template(template)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 997, in get_template
+    return self._load_template(name, globals)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/environment.py", line 958, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 125, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/geordie/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 214, in get_source
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: CSR2.j2
+
+2022-03-22 06:54:43,241 - nornir.core.task -    ERROR -      start() - Host 'CSR2': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 19, in replace_config
+    template_results = task.run(
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: template_file (failed)
+
+
+2022-03-22 06:54:48,250 - nornir.core.task -    ERROR -      start() - Host 'CSR1': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 935, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/home/geordie/.local/lib/python3.8/site-packages/paramiko/util.py", line 279, in retry_on_signal
+    return function()
+  File "/home/geordie/.local/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/base/base.py", line 86, in _netmiko_open
+    self._netmiko_device = ConnectHandler(
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 326, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/cisco/cisco_ios.py", line 17, in __init__
+    return super().__init__(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 350, in __init__
+    self._open()
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 355, in _open
+    self.establish_connection()
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 957, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: cisco_ios 10.10.10.112:22
+
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 29, in napalm_configure
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/connections/__init__.py", line 57, in open
+    connection.open()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 169, in open
+    self.device = self._netmiko_open(
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/base/base.py", line 95, in _netmiko_open
+    raise ConnectionException("Cannot connect to {}".format(self.hostname))
+napalm.base.exceptions.ConnectionException: Cannot connect to 10.10.10.112
+
+2022-03-22 06:54:48,250 - nornir.core.task -    ERROR -      start() - Host 'CSR1': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 24, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:55:03,669 - nornir.core.task -    ERROR -      start() - Host 'R8': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:55:03,669 - nornir.core.task -    ERROR -      start() - Host 'R8': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 24, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:55:04,707 - nornir.core.task -    ERROR -      start() - Host 'R2': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:55:04,707 - nornir.core.task -    ERROR -      start() - Host 'R2': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 24, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:55:05,319 - nornir.core.task -    ERROR -      start() - Host 'R6': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:55:05,320 - nornir.core.task -    ERROR -      start() - Host 'R6': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 24, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:55:05,460 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:55:05,460 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 24, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:55:05,873 - nornir.core.task -    ERROR -      start() - Host 'R5': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:55:05,873 - nornir.core.task -    ERROR -      start() - Host 'R5': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 24, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:55:05,964 - nornir.core.task -    ERROR -      start() - Host 'R3': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:55:05,965 - nornir.core.task -    ERROR -      start() - Host 'R3': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 24, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
+2022-03-22 06:55:10,082 - nornir.core.task -    ERROR -      start() - Host 'R4': task 'napalm_configure' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_configure.py", line 39, in napalm_configure
+    device.commit_config()
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 531, in commit_config
+    output = self._commit_handler(cmd)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 470, in wrapper
+    return f(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/napalm/ios/ios.py", line 487, in _commit_handler
+    output = self.device.send_command_expect(cmd, expect_string=patterns)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1582, in send_command_expect
+    return self.send_command(*args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/utilities.py", line 500, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/home/geordie/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 1535, in send_command
+    raise IOError(
+OSError: Search pattern never detected in send_command: (?:[>##]\s*$|.*all username.*confirm)
+
+2022-03-22 06:55:10,083 - nornir.core.task -    ERROR -      start() - Host 'R4': task 'replace_config' failed with traceback:
+Traceback (most recent call last):
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "replace.py", line 24, in replace_config
+    task.run(task=napalm_configure, configuration=configuration, replace=True)
+  File "/home/geordie/.local/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_configure (failed)
+
+
